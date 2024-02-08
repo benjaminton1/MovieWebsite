@@ -1,0 +1,91 @@
+@model IEnumerable<Group5_FinalProject_v2.Models.PurchaseDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PDSeat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PopcornPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeniorDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TuesdayDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsGift)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DiscountType)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PDSeat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PopcornPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeniorDiscount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TuesdayDiscount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsGift)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.DiscountType)
+        </td>*@
+            <td>
+            <td>
+                @if (User.IsInRole("Manager"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.PurchaseDetailID">Edit</a>
+                    <span>|</span>
+                    <a asp-action="Delete" asp-route-id="@item.PurchaseDetailID">Delete</a>
+                    <span>|</span>
+
+                }
+                <a asp-action="Details" asp-route-id="@item.PurchaseDetailID">Details</a> 
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

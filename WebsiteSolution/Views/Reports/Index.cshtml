@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Group5_FinalProject_v2.Models
+@model IEnumerable<Group5_FinalProject_v2.Models.Purchase>
+
+@{
+    ViewBag.Title = "Index";
+
+    decimal subtotalSum = 0;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="DetailedSearch" class="btn btn-success">Detailed Search</a>
+</p>
+
+<h3>Total Revenue: $1,044.00</h3>
+<h3>Total Seats/Number of Tickets Sold: 94</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            @Html.DisplayNameFor(model => model.User.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subtotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfTickets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPopcornPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            subtotalSum += item.Subtotal;
+
+            <tr>
+
+                <th>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subtotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfTickets)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPopcornPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>

@@ -1,0 +1,90 @@
+@model IEnumerable<Group5_FinalProject_v2.Models.Purchase>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subtotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfTickets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPopcornPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfTickets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPopcornPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @if (User.IsInRole("Manager"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.PurchaseID">Edit</a>
+                    <span>|</span>
+                    <a asp-action="Delete" asp-route-id="@item.PurchaseID">Delete</a>
+                    <span>|</span>
+
+                }
+                <a asp-action="Details" asp-route-id="@item.PurchaseID">Details</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

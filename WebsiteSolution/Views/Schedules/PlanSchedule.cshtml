@@ -1,0 +1,114 @@
+@model IEnumerable<Group5_FinalProject_v2.Models.Schedule>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Flick Chicks</h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+@if (User.IsInRole("Manager"))
+{
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-action="Index" asp-controller="Movies" class="btn btn-success">Add to Schedule</a>
+    <a asp-action="PlanSchedule" asp-controller="Schedules" class="btn btn-success">View Next Week's Schedules</a>
+    @*<a asp-action="Index" asp-controller="Movies">Add to Schedule</a>*@
+}
+
+
+<a asp-action="DetailedSearch" class="btn btn-success">Detailed Search</a>
+
+@{var nextWeekStart = DateTime.Now.Date.AddDays(7); }
+@{var nextWeekEnd = nextWeekStart.Date.AddDays(6);}
+
+<table class="table">
+    <thead>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Movie.Genres.GenreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.ReleaseYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.MPAARating)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Movie.CustomerRating)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.RunTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Theater)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialEvent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(s => s.ShowTime.Date >= nextWeekStart && s.ShowTime <= nextWeekEnd).OrderBy(s => s.ShowTime))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Genres.GenreName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.ReleaseYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.MPAARating)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Movie.CustomerRating)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.RunTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShowTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Theater)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialEvent)
+                </td>
+                <td>
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ScheduleID">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.ScheduleID">Delete</a>
+
+                    }
+
+                    @if (User.IsInRole("Customer"))
+                    {
+                        <a asp-action="Create" class="btn btn-primary" asp-controller="PurchaseDetails">Purchase</a>
+
+
+                    }
+
+
+                    @*<a asp-action="Details" asp-route-id="@item.ScheduleID">Details</a>*@
+                    <a asp-action="Details" asp-route-id="@item.Movie.MovieID">Details</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

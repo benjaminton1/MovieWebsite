@@ -1,0 +1,76 @@
+﻿
+@model Group5_FinalProject_v2.Models.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search for Movie";
+}
+
+<h1>Search For Movie</h1>
+
+<h4>SearchViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Schedules" asp-action="DisplaySearchResults">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SearchTitle" class="control-label"></label>
+                <input asp-for="SearchTitle" class="form-control" />
+                <span asp-validation-for="SearchTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SearchTagLine" class="control-label"></label>
+                <input asp-for="SearchTagLine" class="form-control" />
+                <span asp-validation-for="SearchTagLine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="SelectedGenre" class="control-label"></label>
+                @*<input asp-for="SelectedCategory" class="form-control" />
+        <span asp-validation-for="SelectedCategory" class="text-danger"></span>*@
+                @Html.DropDownListFor(model => model.SelectedGenre, (SelectList)ViewBag.AllGenres, new { @class = "form-control" })
+                <span asp-validation-for="SelectedGenre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="SearchReleaseYear" class="control-label"></label>
+                <input asp-for="SearchReleaseYear" class="form-control" />
+                <span asp-validation-for="SearchReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectedGenre" class="control-label"></label>
+                @Html.DropDownListFor(model => model.SelectedGenre, (SelectList)ViewBag.AllGenres, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="SearchMPAARating" class="control-label"></label>
+                <input asp-for="SearchMPAARating" class="form-control" />
+                <span asp-validation-for="SearchMPAARating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SearchActor" class="control-label"></label>
+                <input asp-for="SearchActor" class="form-control" />
+                <span asp-validation-for="SearchActor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="SelectedDateTime" class="control-label"></label>
+            <input asp-for="SelectedDateTime" class="form-control" />
+            <span asp-validation-for="SelectedDateTime" class="text-danger"></span>
+        @*</div>
+            <div class="form-group">
+            <label asp-for="SearchCustomerRating" class="control-label"></label><br />
+            <input type="radio" class="radio" asp-for="SearchCustomerRating" value="GreaterThan" />&nbsp; GreaterThan<br />
+            <input type="radio" class="radio" asp-for="SearchCustomerRating" value="LessThan" />&nbsp; LessThan<br />
+        </div>*@
+
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

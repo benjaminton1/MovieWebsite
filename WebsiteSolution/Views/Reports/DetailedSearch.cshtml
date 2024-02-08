@@ -1,0 +1,39 @@
+﻿ 
+@model Group5_FinalProject_v2.Models.ReportSearchViewModel
+
+@{
+    ViewData["Title"] = "Search for Transaction";
+}
+
+<h1>Search For Transaction</h1>
+
+<h4>ReportSearchViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller = "Reports" asp-action="DisplaySearchResults">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="SearchName" class="control-label"></label>
+                <input asp-for="SearchName" class="form-control" />
+                <span asp-validation-for="SearchName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SearchPurchaseDate" class="control-label"></label>
+                <input asp-for="SearchPurchaseDate" class="form-control" />
+                <span asp-validation-for="SearchPurchaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

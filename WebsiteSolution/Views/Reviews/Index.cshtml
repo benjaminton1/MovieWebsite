@@ -1,0 +1,68 @@
+@model IEnumerable<Group5_FinalProject_v2.Models.Review>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reviews</h1>
+
+@if (User.IsInRole("Customer"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TextReview)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumRating)
+            </th>
+            @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewStatus)
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TextReview)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumRating)
+                </td>
+                @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewStatus)
+                    </td>
+                }
+                @if (User.IsInRole("Manager") || User.IsInRole("Employee") || User.IsInRole("Customer"))
+                {
+                    <td>
+                        {
+                        <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
+                        }
+                    </td>
+                }
+               
+            </tr>
+        }
+    </tbody>
+</table>

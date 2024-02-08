@@ -1,0 +1,71 @@
+@model Group5_FinalProject_v2.Models.Purchase
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Purchase</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PurchaseID" />
+            <div class="form-group">
+                <label asp-for="ConfirmNum" class="control-label"></label>
+                <input asp-for="ConfirmNum" class="form-control" />
+                <span asp-validation-for="ConfirmNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recipient" class="control-label"></label>
+                <input asp-for="Recipient" class="form-control" />
+                <span asp-validation-for="Recipient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subtotal" class="control-label"></label>
+                <input asp-for="Subtotal" class="form-control" />
+                <span asp-validation-for="Subtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tax" class="control-label"></label>
+                <input asp-for="Tax" class="form-control" />
+                <span asp-validation-for="Tax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfTickets" class="control-label"></label>
+                <input asp-for="NumberOfTickets" class="form-control" />
+                <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPopcornPoints" class="control-label"></label>
+                <input asp-for="TotalPopcornPoints" class="form-control" />
+                <span asp-validation-for="TotalPopcornPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PurchaseStatus" /> @Html.DisplayNameFor(model => model.PurchaseStatus)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseDate" class="control-label"></label>
+                <input asp-for="PurchaseDate" class="form-control" />
+                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
